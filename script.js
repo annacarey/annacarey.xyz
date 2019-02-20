@@ -8256,4 +8256,17 @@ var allGenes = [
 
 // give me 3 random genes
 
-function randomPicker(arrayOfSome
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function randomPicker(arrayOfSomething){
+ return [arrayOfSomething[getRandomInt(arrayOfSomething.length)], arrayOfSomething[getRandomInt(arrayOfSomething.length)], arrayOfSomething[getRandomInt(arrayOfSomething.length)]]  
+}
+
+
+var results = randomPicker(allGenes)
+for (var x=0; x<results.length; x++){
+  var gene = results[x];
+  alert(gene.name);
+}
