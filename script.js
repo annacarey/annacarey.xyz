@@ -8263,10 +8263,10 @@ button.onclick = function(){
     geneResults.innerHTML = "";
   for (var x=0; x<results.length; x++){
     var gene = results[x];
-    geneResults.innerHTML += "<br></br><p>"+gene.name+"</p>";
-    }
-  
+    geneResults.innerHTML += "<br></br><a href='https://artsy.net/gene/" + gene.slug + "' target=\"_blank\">" + gene.name + "</a>"; 
   }
+  
+}
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
