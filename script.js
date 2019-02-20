@@ -8256,6 +8256,18 @@ var allGenes = [
 
 // give me 3 random genes
 
+var button = document.getElementById("gene-sup");
+var geneResults = document.getElementById("gene-results");
+button.onclick = function(){
+    var results = randomPicker(allGenes)
+    geneResults.innerHTML = "";
+  for (var x=0; x<results.length; x++){
+    var gene = results[x];
+    geneResults.innerHTML += "<br></br><p>"+gene.name+"</p>";
+    }
+  
+  }
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -8265,8 +8277,4 @@ function randomPicker(arrayOfSomething){
 }
 
 
-var results = randomPicker(allGenes)
-for (var x=0; x<results.length; x++){
-  var gene = results[x];
-  alert(gene.name);
-}
+
