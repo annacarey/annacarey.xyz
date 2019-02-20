@@ -8263,7 +8263,7 @@ button.onclick = function(){
     geneResults.innerHTML = "";
   for (var x=0; x<results.length; x++){
     var gene = results[x];
-    geneResults.innerHTML += "<br></br><a href='https://artsy.net/gene/" + gene.slug + "' target=\"_blank\">" + gene.name + "</a>"; 
+    geneResults.innerHTML += "<br></br><a href='https://staging.artsy.net/gene/" + gene.slug + "' target=\"_blank\">" + gene.name + "</a>"; 
   }
   
 }
