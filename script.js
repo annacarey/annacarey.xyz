@@ -7,15 +7,28 @@
 console.log('hi');
 var allGenes = [];
 
+var data = {
+  query: "{ genes(size: 100) { id name } }"
+}
+
 // fetch response from staging metaphysics api
-fetch('https://metaphysics-staging.artsy.net')
-  .then(function(response) {
+//'https://metaphysics-staging.artsy.net'
+fetch('https://metaphysics-staging.artsy.net', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    }).then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
+    //console.log(JSON.stringify(myJson));
+  {
+    data: 
+  }
+  
   });
-
 // give me 3 random genes
 
 var button = document.getElementById("gene-sup");
