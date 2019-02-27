@@ -51,15 +51,16 @@ fetch('https://metaphysics-staging.artsy.net', {
 
 var button = document.getElementById("gene-sup");
 var geneResults = document.getElementById("gene-results");
-var geneDescription = document.getElementById("gene-description");
+var geneArtistName = document.getElementById("gene-description");
 
 button.onclick = function(){
     var results = randomPicker(allGenes)
     geneResults.innerHTML = "";
   for (var x=0; x<results.length; x++){
     var gene = results[x];
-    var artistName = 
-    geneResults.innerHTML += "<br></br><a data-artist='" + gene.description + "' href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
+    var artistName = gene.artists_connection.edges[0].node.name
+    console.log(gene)
+    geneResults.innerHTML += "<br></br><a data-artist='" + artistName + "' href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
     
     // add event listent to new <a> elements
   }
@@ -67,14 +68,12 @@ button.onclick = function(){
   var elements = document.getElementsByTagName("a")
   for (var x=0; x<elements.length; x++) {
     elements[x].onmouseover = function(event) {
-      window.myEvent = event
-      var description = event.target.attributes[0]
-      console.log(event.target.attributes)
-      geneDescription.innerHTML = description
+      var artistName = event.target.getAttribute("data-artist")
+      geneArtistName.innerHTML = artistName
     }
     
     elements[x].onmouseout = function() {
-      geneDescription.innerHTML = "";
+      geneArtistName.innerHTML = "";
     }
   }
 }
