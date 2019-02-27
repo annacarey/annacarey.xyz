@@ -8,7 +8,7 @@ console.log('hi');
 var allGenes = [];
 
 var data = {
-  query: "{ genes(size: 100) { id name } }"
+  query: "{ genes(size: 100) { id name _id } }"
 }
 
 // fetch response from staging metaphysics api
@@ -23,10 +23,14 @@ fetch('https://metaphysics-staging.artsy.net', {
     return response.json();
   })
   .then(function(myJson) {
-    //console.log(JSON.stringify(myJson));
-  {
-    data: 
-  }
+    console.log(JSON.stringify(myJson));
+  // myJson = {
+  //   data: {
+  //     genes: [1,2,3]
+  //   }
+  // }
+  
+  allGenes = myJson.data.genes;
   
   });
 // give me 3 random genes
@@ -38,8 +42,14 @@ button.onclick = function(){
     geneResults.innerHTML = "";
   for (var x=0; x<results.length; x++){
     var gene = results[x];
-    geneResults.innerHTML += "<br></br><a href='https://staging.artsy.net/gene/" + gene.slug + "' target=\"_blank\">" + gene.name + "</a>"; 
+    geneResults.innerHTML += "<br></br><a href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
   }
+  
+}
+
+var geneDescription = document.getElementById("gene-description");
+button.onhover = function() {
+  geneDescription.innerHTML = "";
   
 }
 
