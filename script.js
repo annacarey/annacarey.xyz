@@ -7,9 +7,23 @@
 console.log('hi');
 var allGenes = [];
 
-var data = {
-  query: "{ genes(size: 100) { id name _id } }"
+var query = `
+{
+	genes(size: 100) {
+    id
+    name
+    artists_connection(first: 1) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
 }
+`
+
+var data = { query: query }
 
 // fetch response from staging metaphysics api
 //'https://metaphysics-staging.artsy.net'
@@ -44,7 +58,8 @@ button.onclick = function(){
     geneResults.innerHTML = "";
   for (var x=0; x<results.length; x++){
     var gene = results[x];
-    geneResults.innerHTML += "<br></br><a data-description='" + gene.description + "' href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
+    var artistName = 
+    geneResults.innerHTML += "<br></br><a data-artist='" + gene.description + "' href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
     
     // add event listent to new <a> elements
   }
@@ -52,7 +67,9 @@ button.onclick = function(){
   var elements = document.getElementsByTagName("a")
   for (var x=0; x<elements.length; x++) {
     elements[x].onmouseover = function(event) {
-      var description = event.target.getAttribute("data-description")
+      window.myEvent = event
+      var description = event.target.attributes[0]
+      console.log(event.target.attributes)
       geneDescription.innerHTML = description
     }
     
