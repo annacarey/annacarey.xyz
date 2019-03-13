@@ -60,7 +60,7 @@ button.onclick = function(){
     var gene = results[x];
     var artistName = gene.artists_connection.edges[0].node.name
     console.log(gene)
-    geneResults.innerHTML += "<br></br><a data-artist='" + artistName + "' href='https://staging.artsy.net/gene/" + gene._id + "' target=\"_blank\">" + gene.name + "</a>"; 
+    geneResults.innerHTML += "<br></br><a data-artist='" + artistName + "' href='https://staging.artsy.net/gene/" + gene.id + "' target=\"_blank\">" + gene.name + "</a>"; 
     
     // add event listent to new <a> elements
   }
